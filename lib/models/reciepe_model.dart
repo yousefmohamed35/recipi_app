@@ -1,3 +1,6 @@
+import 'package:json_annotation/json_annotation.dart';
+part 'reciepe_model.g.dart';
+@JsonSerializable()
 class ReciepeModel {
   final String name;
   final String image;
