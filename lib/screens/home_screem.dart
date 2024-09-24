@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:recpiapp/widgets/recipe_widget.dart';
 
 class HomeScreen extends StatelessWidget {
   const HomeScreen({super.key});
@@ -31,6 +32,11 @@ class HomeScreen extends StatelessWidget {
               fontSize: 24, fontWeight: FontWeight.bold, color: Colors.white),
         ),
       ),
+      body: ListView.builder(
+          itemCount: 10,
+          itemBuilder: (context, index) {
+            return const RecipeWidget();
+          }),
     );
   }
 }
