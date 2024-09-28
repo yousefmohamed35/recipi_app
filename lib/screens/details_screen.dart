@@ -1,12 +1,15 @@
 import 'package:flutter/material.dart';
+import 'package:recpiapp/models/reciepe_model.dart';
+import 'package:recpiapp/widgets/ingridiants_grid_view.dart';
 
 class DetailsScreen extends StatelessWidget {
-  const DetailsScreen({super.key});
-
+  const DetailsScreen({super.key, required this.reciepeModel});
+  final ReciepeModel reciepeModel;
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
+        foregroundColor: Colors.white,
         elevation: 0,
         backgroundColor: Colors.transparent,
         flexibleSpace: Container(
@@ -25,14 +28,43 @@ class DetailsScreen extends StatelessWidget {
                 end: Alignment.bottomRight,
               )),
         ),
-        title: const Text(
-          'Recipe App',
-          style: TextStyle(
-              fontSize: 24, fontWeight: FontWeight.bold, color: Colors.white),
+        title: Text(
+          reciepeModel.name,
+          style: const TextStyle(
+            fontSize: 24,
+            fontWeight: FontWeight.bold,
+          ),
         ),
       ),
-      body: Column(
-        
+      body: Padding(
+        padding: const EdgeInsets.all(16.0),
+        child: ListView(
+          children: [
+            Image.network(
+              reciepeModel.image,
+              fit: BoxFit.cover,
+            ),
+            const SizedBox(
+              height: 16,
+            ),
+            Card(
+              child: Padding(
+                padding: const EdgeInsets.all(8.0),
+                child: Column(
+                  children: [
+                    const Text(
+                      'Ingredients',
+                      style:
+                          TextStyle(fontSize: 24, fontWeight: FontWeight.bold),
+                    ),
+                    const SizedBox(height: 8),
+                    IngredientsGridView(ingridants: reciepeModel.ingredients)
+                  ],
+                ),
+              ),
+            ),
+          ],
+        ),
       ),
     );
   }
