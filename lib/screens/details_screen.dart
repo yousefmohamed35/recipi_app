@@ -1,11 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:recpiapp/cubits/reciepe_cubit.dart';
-import 'package:recpiapp/cubits/reciepe_state.dart';
-import 'package:recpiapp/widgets/recipe_widget.dart';
 
-class HomeScreen extends StatelessWidget {
-  const HomeScreen({super.key});
+class DetailsScreen extends StatelessWidget {
+  const DetailsScreen({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -35,22 +31,9 @@ class HomeScreen extends StatelessWidget {
               fontSize: 24, fontWeight: FontWeight.bold, color: Colors.white),
         ),
       ),
-      body: BlocBuilder<ReciepeCubit, ReciepeState>(builder: (context, state) {
-        if (state is ReciepeLoading) {
-          return const Center(child: CircularProgressIndicator());
-        } else if (state is ReciepeError) {
-          return Center(child: Text(state.message));
-        } else if (state is ReciepeLoaded) {
-          return ListView.builder(
-            itemCount: state.recipes.length,
-            itemBuilder: (context, index) {
-              return RecipeWidget(reciepeModel: state.recipes[index]);
-            },
-          );
-        } else {
-          return const Center(child: Text('No Data'));
-        }
-      }),
+      body: Column(
+        
+      ),
     );
   }
 }
