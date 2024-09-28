@@ -1,8 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:recpiapp/models/reciepe_model.dart';
 
 class RecipeWidget extends StatelessWidget {
-  const RecipeWidget({super.key});
-
+  const RecipeWidget({super.key, required this.reciepeModel});
+  final ReciepeModel reciepeModel;
   @override
   Widget build(BuildContext context) {
     return Card(
@@ -16,7 +17,7 @@ class RecipeWidget extends StatelessWidget {
           ClipRRect(
             borderRadius: BorderRadius.circular(12),
             child: Image.network(
-              'https://cdn.dummyjson.com/recipe-images/2.webp',
+              reciepeModel.image,
               height: 200,
               width: double.infinity,
               fit: BoxFit.cover,
@@ -45,13 +46,13 @@ class RecipeWidget extends StatelessWidget {
                 borderRadius: BorderRadius.circular(12),
                 color: Colors.black.withOpacity(0.7),
               ),
-              child: const Row(
+              child: Row(
                 children: [
                   Text(
-                    '4.8  ',
-                    style: TextStyle(color: Colors.white),
+                    '${reciepeModel.rating}  ',
+                    style: const TextStyle(color: Colors.white),
                   ),
-                  Icon(
+                  const Icon(
                     Icons.star,
                     color: Colors.yellow,
                   )
@@ -59,29 +60,29 @@ class RecipeWidget extends StatelessWidget {
               ),
             ),
           ),
-          const Positioned(
+          Positioned(
             bottom: 10,
             left: 10,
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                Text('Classic pizza',
-                    style: TextStyle(
+                Text(reciepeModel.name,
+                    style: const TextStyle(
                         fontSize: 24,
                         fontWeight: FontWeight.bold,
                         color: Colors.white)),
-                SizedBox(height: 4),
-                Text('6 compenet',
-                    style: TextStyle(fontSize: 14, color: Colors.white))
+                const SizedBox(height: 4),
+                Text('${reciepeModel.ingredients.length} ingredients',
+                    style: const TextStyle(fontSize: 14, color: Colors.white))
               ],
             ),
           ),
-          const Positioned(
+          Positioned(
             right: 10,
             bottom: 10,
             child: Text(
-              '1 comp',
-              style: TextStyle(color: Colors.white),
+              '${reciepeModel.colories} kcal',
+              style: const TextStyle(color: Colors.white),
             ),
           ),
           const Positioned(

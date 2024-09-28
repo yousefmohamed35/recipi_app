@@ -10,7 +10,7 @@ ReciepeModel _$ReciepeModelFromJson(Map<String, dynamic> json) => ReciepeModel(
       name: json['name'] as String,
       image: json['image'] as String,
       rating: (json['rating'] as num).toDouble(),
-      colories: (json['colories'] as num).toInt(),
+      colories: (json['caloriesPerServing'] as num).toInt(),
       ingredients: (json['ingredients'] as List<dynamic>)
           .map((e) => e as String)
           .toList(),

@@ -1,5 +1,6 @@
 import 'package:json_annotation/json_annotation.dart';
 part 'reciepe_model.g.dart';
+
 @JsonSerializable()
 class ReciepeModel {
   final String name;
@@ -14,4 +15,7 @@ class ReciepeModel {
       required this.rating,
       required this.colories,
       required this.ingredients});
+
+  factory ReciepeModel.fromJson(Map<String, dynamic> json) =>
+      _$ReciepeModelFromJson(json);
 }

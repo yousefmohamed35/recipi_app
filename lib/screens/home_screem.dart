@@ -1,4 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:recpiapp/cubits/reciepe_cubit.dart';
+import 'package:recpiapp/models/reciepe_model.dart';
 import 'package:recpiapp/widgets/recipe_widget.dart';
 
 class HomeScreen extends StatelessWidget {
@@ -32,11 +35,17 @@ class HomeScreen extends StatelessWidget {
               fontSize: 24, fontWeight: FontWeight.bold, color: Colors.white),
         ),
       ),
-      body: ListView.builder(
-          itemCount: 10,
-          itemBuilder: (context, index) {
-            return const RecipeWidget();
-          }),
+      body: BlocBuilder<ReciepeCubit, List<ReciepeModel>>(
+        builder: (context, state) {
+          return ListView.builder(
+              itemCount: state.length,
+              itemBuilder: (context, index) {
+                return RecipeWidget(
+                  reciepeModel: state[index],
+                );
+              });
+        },
+      ),
     );
   }
 }

@@ -1,6 +1,8 @@
 import 'package:device_preview/device_preview.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:recpiapp/cubits/reciepe_cubit.dart';
 import 'package:recpiapp/screens/home_screem.dart';
 import 'package:recpiapp/services/recipe_serveices.dart';
 
@@ -26,7 +28,10 @@ class MyApp extends StatelessWidget {
       useInheritedMediaQuery: true,
       locale: DevicePreview.locale(context),
       builder: DevicePreview.appBuilder,
-      home: const HomeScreen(),
+      home: BlocProvider(
+        create: (context) => ReciepeCubit(),
+        child: const HomeScreen(),
+      ),
     );
   }
 }
